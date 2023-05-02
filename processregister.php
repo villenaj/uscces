@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <style>
   body {
     font-family: Arial, Helvetica, sans-serif;
@@ -59,47 +62,47 @@
           } 
          else
          {
-          // $otp = rand(100000,999999);
-          // $_SESSION['otp'] = $otp;
-          // $_SESSION['mail'] = $email;
-          // require "Mail/phpmailer/PHPMailerAutoload.php";
-          // $mail = new PHPMailer;
+          $otp = rand(100000,999999);
+          $_SESSION['otp'] = $otp;
+          $_SESSION['mail'] = $email;
+          require "Mail/phpmailer/PHPMailerAutoload.php";
+          $mail = new PHPMailer;
 
-          // $mail->isSMTP();
-          // $mail->Host='smtp.gmail.com';
-          // $mail->Port=587;
-          // $mail->SMTPAuth=true;
-          // $mail->SMTPSecure='tls';
+          $mail->isSMTP();
+          $mail->Host='smtp.gmail.com';
+          $mail->Port=587;
+          $mail->SMTPAuth=true;
+          $mail->SMTPSecure='tls';
 
-          // $mail->Username='xameae@gmail.com';
-          // $mail->Password='bwiinozvolukwnfw';
+          $mail->Username='18101709@usc.edu.ph';
+          $mail->Password='qmtxhjkcyvpzgarx';
 
-          // $mail->setFrom('xameae@gmail.com', 'OTP Verification');
-          // $mail->addAddress($email);
+          $mail->setFrom('18101709@usc.edu.ph', 'OTP Verification');
+          $mail->addAddress($email);
 
-          // $mail->isHTML(true);
-          // $mail->Subject="Your verify code";
-          // $mail->Body="<p>Dear user, </p> <h3>Your verify OTP code is $otp <br></h3>
-          // <br><br>
-          // <p>With regrads,</p>
-          // <b>Programming with Lam</b>
-          // https://www.youtube.com/channel/UCKRZp3mkvL1CBYKFIlxjDdg";
+          $mail->isHTML(true);
+          $mail->Subject="Your verify code";
+          $mail->Body="<p>Dear user, </p> <h3>Your verify OTP code is $otp <br></h3>
+          <br><br>
+          <p>With regrads,</p>
+          <b>Programming with Lam</b>
+          https://www.youtube.com/channel/UCKRZp3mkvL1CBYKFIlxjDdg";
 
-          //         if(!$mail->send()){
-          //             ?>
-          //                 <script>
-          //                     alert("<?php echo "Register Failed, Invalid Email "?>");
-          //                 </script>
-          //             <?php
-          //         }else{
-          //             ?>
-          //             <script>
-          //                 alert("<?php echo "Register Successfully, OTP sent to " . $email ?>");
-          //                 window.location.replace('verification.php');
-          //             </script>
-          //             <?php
-          //         }
-              $sql = "INSERT INTO tblusers(user_name,firstName,lastName,pass1,pass2,userType,emailAdd) VALUES ('$username','$fname',
+                  if(!$mail->send()){
+                      ?>
+                          <script>
+                              alert("<?php echo "Register Failed, Invalid Email "?>");
+                          </script>
+                      <?php
+                  }else{
+                      ?>
+                      <script>
+                          alert("<?php echo "Register Successfully, OTP sent to " . $email ?>");
+                          window.location.replace('verification.php');
+                      </script>
+                      <?php
+                  }
+              $sql = "INSERT INTO tblusers (user_name,firstName,lastName,pass1,pass2,userType,emailAdd) VALUES ('$username','$fname',
              '$lname',md5('$pass1'),md5('$pass2'),'$usertype','$email')";
           
                  if(mysqli_query($conn, $sql)){
