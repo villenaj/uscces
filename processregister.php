@@ -75,7 +75,7 @@ session_start();
           $mail->SMTPSecure='tls';
 
           $mail->Username='18101709@usc.edu.ph';
-          $mail->Password='qmtxhjkcyvpzgarx';
+          $mail->Password='';
 
           $mail->setFrom('18101709@usc.edu.ph', 'OTP Verification');
           $mail->addAddress($email);
